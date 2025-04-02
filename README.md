@@ -34,12 +34,17 @@ If you prefer using yml files for installation on windows machines, you can use 
 ```bash
 conda env create -f environment_3090.yml
 ```
+or 
+```bash
+conda env create -f environment_4090.yml
+```
+This will create a conda environment with the necessary dependencies for running the application on NVIDIA GPUs. The `environment_3090.yml` is optimized for RTX 3090, while `environment_4090.yml` is optimized for RTX 4090.
 
-Activate the environment:
+**Activate the environment**
 ```bash
 conda activate InterpolAI
 ```
-If you prefer using yml files for installation on macos machines, you can use the following commands:
+**MACOS machines**, you can use the following commands:
 ```bash
 conda env create -f environment_macos.yml
 ```
