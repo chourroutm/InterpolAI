@@ -1,4 +1,4 @@
-name: interpolai2
+name: InterpolAI
 channels:
   - conda-forge
 dependencies:
@@ -8,7 +8,7 @@ dependencies:
   - pip
   - pip:
     - tensorflow<2.11
-    - numpy==1.21.6
+    - numpy==1.26.4
     - imageio
     - natsort
     - tqdm
