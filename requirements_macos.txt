@@ -1,0 +1,8 @@
+# For macOS (especially M1/M2)
+tensorflow-macos  # TensorFlow optimized for macOS
+tensorflow-metal   # GPU acceleration for M1/M2 chips
+numpy==1.21.6
+imageio
+natsort
+tqdm
+jupyter

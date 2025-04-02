@@ -1,4 +1,4 @@
-conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+conda conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
 tensorflow<2.11
 numpy==1.21.6
 imageio
