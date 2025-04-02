@@ -1,0 +1,13 @@
+name: InterpolAI
+channels:
+  - conda-forge
+dependencies:
+  - python=3.9
+  - pip
+  - pip:
+    - tensorflow-macos
+    - tensorflow-metal==2.10.0
+    - imageio
+    - natsort
+    - tqdm
+    - jupyter
