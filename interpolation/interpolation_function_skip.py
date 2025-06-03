@@ -5,6 +5,10 @@ import tensorflow as tf
 from natsort import natsorted
 from tqdm import tqdm
 import time
+# import cv2
+# import mahotas
+# import pandas as pd
+# import csv
 
 def load_image(img_path: str):
     _UINT8_MAX_F = float(np.iinfo(np.uint8).max)
@@ -39,7 +43,7 @@ def stitch_tiles(tiles: np.ndarray, pad_h: int, pad_w: int, tile_size: tuple):
 
     return stitched_image
 
-def interpolate_from_image_stack_combined(pthims, skip_values, TILE_SIZE, model):
+def interpolate_from_image_stack_skip(pthims, skip_values, TILE_SIZE, model, image_files=None):
     _UINT8_MAX_F = float(np.iinfo(np.uint8).max)
     image_files = [f for f in os.listdir(pthims) if f.endswith(('tif', 'png', 'jpg'))]
     image_files = natsorted(image_files)
@@ -140,3 +144,30 @@ def interpolate_from_image_stack_combined(pthims, skip_values, TILE_SIZE, model)
                     elapsed_time = time.time() - start_time
                     print(f"Time to generate {stitched_filename}: {elapsed_time:.2f} seconds")
                     pbar.update(1)
+
+# def calculate_haralick(image_path):
+#     image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+#     haralick_features = mahotas.features.haralick(image).mean(axis=0)
+#     return haralick_features
+#
+# def process_images_in_folder(folder_path, output_csv):
+#     image_files = [f for f in os.listdir(folder_path) if f.endswith(('.tif', '.jpg', '.png'))]
+#     csv_folder= os.path.join(folder_path,'haralick_features_quantifications')
+#     os.makedirs(csv_folder, exist_ok=True)
+#     csv_path = os.path.join(csv_folder, output_csv)  # Save CSV in the same directory as images
+#     with open(csv_path, 'w', newline='') as csv_file:
+#         writer = csv.writer(csv_file)
+#         header = ['Image'] + [f'Haralick_{i}' for i in range(13)]  # 13 Haralick features
+#         writer.writerow(header)
+#         for image_file in image_files:
+#             image_path = os.path.join(folder_path, image_file)
+#             haralick_features = calculate_haralick(image_path)
+#             row = [image_file] + list(haralick_features)
+#             writer.writerow(row)
+#
+# def process_interpolated_images_for_haralick_features(pth, skips):
+#     for skip_num in skips:
+#         # Specify the output folder for the generated middle images
+#         # output_folder = os.path.join(pth, f'skip_{skip_num}')
+#         outnm = f'skip_{skip_num}_haralick_features.csv'
+#         process_images_in_folder(pth, outnm)

@@ -42,7 +42,7 @@ def stitch_tiles(tiles: np.ndarray, pad_h: int, pad_w: int, tile_size: tuple):
 
     return stitched_image
 
-def interpolate_from_image_stack_no_skip(pthims, skips, TILE_SIZE, model):
+def interpolate_from_image_stack_no_skip(pthims, skips, TILE_SIZE, model, image_files=None):
     _UINT8_MAX_F = float(np.iinfo(np.uint8).max)
     image_files = [f for f in os.listdir(pthims) if f.endswith(('tif', 'png', 'jpg'))]
     image_files = natsorted(image_files)
@@ -51,7 +51,7 @@ def interpolate_from_image_stack_no_skip(pthims, skips, TILE_SIZE, model):
 
     for skip_num in skips:
         print(f'Interpolating int {skip_num}:')
-        output_folder = os.path.join(pthims, f'int_{skip_num}')
+        output_folder = os.path.join(pthims, f'int_{skip_num}_no_skip')
         os.makedirs(output_folder, exist_ok=True)
         times = np.linspace(0, 1, skip_num + 2)[1:-1]
 

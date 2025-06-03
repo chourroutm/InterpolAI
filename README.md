@@ -1,5 +1,6 @@
 # InterpolAI
 
+We recommend using a conda environment over a virtual environment.
 ## Installation Steps
 
 1. **Create a Conda Environment with Python 3.9**
@@ -19,15 +20,14 @@
      ```
      This command installs the necessary packages optimized for macOS, including TensorFlow for Apple Silicon.
 
-   - **For Other Systems**
+   - **For Windows**
+     ```bash
+     conda install -c conda-forge cudatoolkit=11.2 cudnn=8.1.0
+     ```
+     
      ```bash
      pip install -r requirements.txt
-     ```
-
-4. **Run the Application**
-   ```bash
-   python main.py
-   ```
+     ``` 
 
 ## Alternative Installation Method
 If you prefer using yml files for installation on windows machines, you can use the following commands:
@@ -48,13 +48,25 @@ conda activate InterpolAI
 ```bash
 conda env create -f environment_macos.yml
 ```
-Activate the environment:
+## Activate the environment:
 ```bash
 conda activate InterpolAI
 ```
 
 ## Usage
-On the interpolation folder, you can find the:
-1. `interpolAI_auto.ipynb`: searches through a folder of images and looking at the images missing in the folder, it will generates the missing images.
-2. `interpolAI_no_skip.ipynb`: on the destination folder, it will generates a given number of images between input images of the entire stack.
-3. `FILM_Final_validation_backup.ipynb`: on the destination folder, it will delete one in every image and generates the respective images between input images of the entire stack.
+In the interpolation folder, you can find individual executable jupyter notebooks as listed:
+1. `interpolAI_auto.ipynb` : searches through a folder of images and looking at the images missing in the folder, it will generates the missing images.
+- **OR**
+```bash
+python main.py --mode auto --tile_size 1024 1024 --pth "\\10.99.68.178\Saurabh\manuscript_figs\data\HE_roi1\authentic\test"
+```
+2. `interpolAI_no_skip.ipynb`: on the destination folder, it will generates a given number of images between input images of the entire stack. (skip=2 means it will generate 2 images between every image pairs)
+- **OR**
+```bash
+python main.py --mode no_skip --tile_size 1024 1024 --pth "\\10.99.68.178\Saurabh\manuscript_figs\data\HE_roi1\authentic\test" --skip 1 3 5 
+```
+3. `interpolAI_skip_haralick.ipynb`: on the destination folder, it will delete one in every image and generates the respective images between input images of the entire stack.
+- **OR**
+```bash
+python main.py --mode skip --tile_size 1024 1024 --pth "\\10.99.68.178\Saurabh\manuscript_figs\data\HE_roi1\authentic\test" --skip 1
+```
