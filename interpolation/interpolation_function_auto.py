@@ -186,3 +186,4 @@ def interpolate_from_image_list(pthims, skip_images, TILE_SIZE, model, image_fil
                     stitched_image = stitch_tiles(interpolated_tiles_np, pad_h, pad_w, TILE_SIZE)
                     imageio.imwrite(stitched_output_path, stitched_image, format=file_extension.lstrip('.'))
                     pbar.update(1)
+
